@@ -1,16 +1,19 @@
-//package aaSda.weekend3.sobota.dziedziczenie;
-//
-//public class Kwadrat extends Kształt {
-//
-//
-//    @Override
-//    public void obliczPole(int a) {
-//        pole = a*a;
-//    }
-//
-//    @Override
-//    public void obliczObwod(int a) {
-//        obwod = 4*a;
-//
-//    }
-//}
+package a.sda.weekend3.sobota.dziedziczenie;
+
+
+public class Kwadrat extends Kształt {
+
+
+    @Override
+    public double obliczPole(int a) {
+        pole = a * a;
+        return pole;
+    }
+
+    @Override
+    public double obliczObwod(int a) {
+        obwod = 4 * a;
+        return obwod;
+    }
+}
+

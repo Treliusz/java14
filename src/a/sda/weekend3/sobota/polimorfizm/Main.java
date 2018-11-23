@@ -9,6 +9,7 @@ public class Main {
             System.out.println(((Paladyn) postac).getTarcza());
         } catch (Paladyn.PaladynShieldException exp){
             System.out.println(exp.getMessage());
+            return;
         }
         postac = new Wojownik("Wojownik", 43, 188.4, "średnia", "skuteczna", 4);
         System.out.println(postac.toString());

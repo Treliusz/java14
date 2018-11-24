@@ -9,7 +9,7 @@ public class Firma {
     private String name;
     private List<Pracownik> listaPracownikow = new ArrayList<Pracownik>();
     public static final String PATH_TO_FILE = "C:\\Users\\vmtr0\\OneDrive\\Programowanie\\Java\\SDA\\lista.txt";
-    private static final int MAX_EMPLOYEES_COUNT = 2;
+    private static final int MAX_EMPLOYEES_COUNT = 20;
     private int licznik = 0;
 
     public Firma(String name) {
@@ -71,7 +71,7 @@ public class Firma {
                 for (int i = 0; i < licznik; i++) {
                     writer.write(listaPracownikow.get(i).toString());
                 }
-            } else System.out.println("Firma jeszcze nikogo nie zatrudniła");
+            }
         } catch (IOException e) {
             System.out.println("Nie udało osie zapisać do pliku");
         }

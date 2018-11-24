@@ -14,6 +14,5 @@ public class Kolo extends Kształt {
     public double obliczObwod(int a) {
         super.setObwod(2 * Math.PI * a);
         return obwod;
-
     }
 }

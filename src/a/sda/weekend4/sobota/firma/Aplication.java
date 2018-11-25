@@ -1,5 +1,10 @@
 package a.sda.weekend4.sobota.firma;
 
+import a.sda.weekend4.sobota.firma.writer.PracownikWriter;
+import a.sda.weekend4.sobota.firma.writer.TxtPracownikWriter;
+import a.sda.weekend4.sobota.firma.writer.WriterFactory;
+import a.sda.weekend4.sobota.firma.writer.XmlPracownikWriter;
+
 import javax.sound.midi.Soundbank;
 import java.util.Scanner;
 
@@ -15,23 +20,14 @@ public class Aplication {
             int wybor = scanner.nextInt();
             switch (wybor){
                 case 1: {
-                    firma.wyswietlPracownikow();
-                    System.out.println("");
-                } break;
+                   // firma.wyswietlPracownikow();
+                    wyswietlPracownikow(firma);
+                    break;
+                }
                 case 2:
                 {
-                    System.out.println("Podaj imię pracowniaka:");
-                    String imie = scanner.next();
-                    System.out.println("Podaj nazwisko:");
-                    String nazwisko = scanner.next();
-                    System.out.println("Podaj pensję:");
-                    double pensja = scanner.nextDouble();
-                    System.out.println("Podaj e-mail:");
-                    String email = scanner.next();
-                    System.out.println("Podaj id:");
-                    int id = scanner.nextInt();
-                    Pracownik pracownik1 = new Pracownik(imie, nazwisko, pensja, email, id);
-                    firma.dodajPracownika(pracownik1);
+                    wstawPracownika(firma);
+
                 } break;
                 case 3:{
                     System.out.println("Podaj imie:");
@@ -46,7 +42,17 @@ public class Aplication {
                     break;
                 }
                 case 5:{
-                    firma.zapiszDoPliku();
+                    System.out.println("Podaj nazwę pliku:");
+                    String fileName = scanner.next();
+
+
+                    PracownikWriter writer = WriterFactory.createWriter(fileName);
+                    if (writer != null){
+                        writer.write(firma.getTabPracownikow());
+                    } else
+                        System.out.println("Nie obsługiwane rozszerzenie");
+
+                    //firma.zapiszDoPliku();
                     break;
                 }
                 case 6:
@@ -54,6 +60,38 @@ public class Aplication {
                     break;
             }
         }
+    }
+
+    private static void wyswietlPracownikow(Firma firma) {
+        System.out.println("Lista pracowników");
+        for(int i=0; i<firma.getTabPracownikow().length; i++) {
+            System.out.println(firma.getTabPracownikow()[i]);
+        }
+        return;
+    }
+
+    private static void wstawPracownika(Firma firma) {
+        System.out.println("Podaj imię pracowniaka:");
+        String imie = scanner.next();
+        System.out.println("Podaj nazwisko:");
+        String nazwisko = scanner.next();
+        System.out.println("Podaj pensję:");
+        double pensja = scanner.nextDouble();
+        System.out.println("Podaj e-mail:");
+        String email = scanner.next();
+        System.out.println("Podaj id:");
+        int id = scanner.nextInt();
+        Pracownik pracownik1 = new Pracownik(imie, nazwisko, pensja, email, id);
+//        firma.dodajPracownika(pracownik1);
+//        firma.dodajPracownikaDoTablicy(pracownik1);
+        boolean wynik = firma.dodajPracownikaDoTablicy(pracownik1);
+        if(wynik){
+            System.out.println("Dodano nowego pracownika");
+        } else System.out.println("Nie udało się dodać nowego pracownika");
+        //To samo co wyżej:
+        String message = wynik == true
+                ?"Dodano nowego pracownika" : "Nie udało się dodac nowego pracownika";
+        System.out.println(message);
     }
 
     private static void printMenu() {

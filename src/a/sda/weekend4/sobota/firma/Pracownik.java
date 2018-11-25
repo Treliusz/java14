@@ -1,5 +1,8 @@
 package a.sda.weekend4.sobota.firma;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Pracownik {
     private String imie;
     private String nazwisko;
@@ -7,6 +10,7 @@ public class Pracownik {
     private String email;
     private int id;
 
+    private Pracownik(){}
 
     public Pracownik(String imie, String nazwisko) {
         this.imie = imie;
@@ -29,11 +33,7 @@ public class Pracownik {
 
     @Override
     public String toString() {
-        return  "imie: " + imie +
-                "\nnazwisko: " + nazwisko +
-                "\npensja: " + pensja +
-                "\nemail: " + email +
-                "\nid: " + id ;
+        return String.format("%d, %s, %s, %f, %s\n", id, imie, nazwisko, pensja, email);
     }
 
     public void setImie(String imie) {

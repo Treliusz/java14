@@ -2,6 +2,7 @@ package a.sda.weekend4.sobota.firma;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -9,20 +10,34 @@ public class Firma {
     private String name;
     private List<Pracownik> listaPracownikow = new ArrayList<Pracownik>();
     public static final String PATH_TO_FILE = "C:\\Users\\vmtr0\\OneDrive\\Programowanie\\Java\\SDA\\lista.txt";
-    private static final int MAX_EMPLOYEES_COUNT = 20;
+    private  final int MAX_EMPLOYEES_COUNT = 20;
     private int licznik = 0;
+    private Pracownik[] tabPracownikow = new Pracownik[MAX_EMPLOYEES_COUNT];
 
     public Firma(String name) {
         this.name = name;
         // this.pracownicy =  new  Pracownik[MAX_EMPLOYEES_COUNT];
     }
+    public boolean dodajPracownikaDoTablicy(Pracownik pracownik){
+        if(pracownik == null){
+            throw new IllegalArgumentException("Pracownik nie może być nulem");
+        }
+        if(licznik == MAX_EMPLOYEES_COUNT){
+            return false;
+        } else {
+            tabPracownikow[licznik++] = pracownik;
+        } return true;
+
+    }
     public boolean dodajPracownika(Pracownik pracownik){
         if(licznik<MAX_EMPLOYEES_COUNT){
             listaPracownikow.add(pracownik);
             licznik++;
+            return true;
         } else System.out.println("Odmowa zatrudnienia - brak wolnych etatów\n");
         return false;
     }
+
     public boolean usunPracownika(Pracownik pracownik){
         if (licznik!=0){
             int tempLicznik = licznik;
@@ -76,5 +91,15 @@ public class Firma {
             System.out.println("Nie udało osie zapisać do pliku");
         }
     }
+    public Pracownik[] getTabPracownikow(){
+        return Arrays.copyOf(tabPracownikow,licznik);
+    }
 
+    public int getLicznik() {
+        return licznik;
+    }
+
+    public int getMAX_EMPLOYEES_COUNT() {
+        return MAX_EMPLOYEES_COUNT;
+    }
 }

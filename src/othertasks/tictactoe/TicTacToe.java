@@ -34,13 +34,16 @@ public class TicTacToe {
 
     public void displayWinner() {
         if (isWin(X)) {
-            System.out.println("Wygrywa X");
+            System.out.println("\n\nWygrywa X");
+            System.exit(1);
         }
         if (isWin(O)) {
-            System.out.println("Wygrywa O");
+            System.out.println("\n\nWygrywa O");
+            System.exit(1);
         } else {
             if (!isEmpty) {
-                System.out.println("Remis");
+                System.out.println("\n\nRemis");
+                System.exit(1);
             }
         }
     }
@@ -64,12 +67,10 @@ public class TicTacToe {
                 }
                 if (j < 2) {
                     sb.append("|");
-                    break;
                 }
             }
             if (i < 2) {
                 sb.append("\n-----------\n");
-                break;
             }
         }
         return sb.toString();

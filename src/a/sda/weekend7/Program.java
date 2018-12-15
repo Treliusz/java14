@@ -25,7 +25,7 @@ public class Program {
         System.out.println("\nUsuwanie ostatniego elementu:");
         arrayList.removeLast();
         System.out.println(arrayList);
-        arrayList.remove(2);
+        arrayList.remove(1);
         System.out.println("\n" + arrayList);
     }
 }

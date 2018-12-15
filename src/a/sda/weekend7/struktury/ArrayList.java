@@ -58,26 +58,27 @@ public class ArrayList implements MyList{
 
     @Override
     public String removeFirst() {
-        String temp = elements[0];
-        for (int i = 0; i < index; i++) {
-            elements[i] = elements[i + 1];
-        }
-        elements[index] = null;
-        index--;
-        return temp;
+//        String temp = elements[0];
+//        for (int i = 0; i < index; i++) {
+//            elements[i] = elements[i + 1];
+//        }
+//        elements[index] = null;
+//        index--;
+        return remove(0);
     }
 
     @Override
     public String removeLast() {
-        if (isEmpty()) {
-
-        }else {
-            String temp = elements[index - 1];
-            elements[index - 1] = null;
-            index--;
-            return temp;
-        }
-        return null;
+//        if (isEmpty()) {
+//
+//        }else {
+//            String temp = elements[index - 1];
+//            elements[index - 1] = null;
+//            index--;
+//            return temp;
+//        }
+//        return null;
+        return remove(index-1);
     }
 
     @Override
